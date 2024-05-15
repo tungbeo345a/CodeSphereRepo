@@ -1,12 +1,10 @@
-const gnomeSort = (arr) => {
-  let index = 0;
-  while (index < arr.length) {
-    if (index === 0 || arr[index] >= arr[index - 1]) {
-      index++;
-    } else {
-      [arr[index], arr[index - 1]] = [arr[index - 1], arr[index]];
-      index--;
+function minimumTotal(triangle) {
+  const n = triangle.length;
+  const dp = new Array(n + 1).fill(0);
+  for (let i = n - 1; i >= 0; i--) {
+    for (let j = 0; j <= i; j++) {
+      dp[j] = triangle[i][j] + Math.min(dp[j], dp[j + 1]);
     }
   }
-  return arr;
-};
+  return dp[0];
+}
